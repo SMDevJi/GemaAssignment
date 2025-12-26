@@ -1,0 +1,80 @@
+{
+  "student": {
+    "name": "Jeevan Chopra",
+    "date": "Dec 25, 2025"
+  },
+
+  "frameworks": {
+    "speechace": {
+      "label": "SpeechAce",
+      "maxScore": 9,
+      "overall": 7,
+      "skills": {
+        "pronunciation": 7,
+        "fluency": 6,
+        "vocabulary": 7,
+        "grammar": 6
+      }
+    },
+
+    "cefr": {
+      "label": "CEFR",
+      "levels": ["A1", "A2", "B1", "B2", "C1", "C2"],
+      "overall": "B2",
+      "skills": {
+        "pronunciation": "B2",
+        "fluency": "B1",
+        "vocabulary": "B2",
+        "grammar": "B1"
+      }
+    },
+
+    "ielts": {
+      "label": "IELTS",
+      "maxScore": 9,
+      "overall": 7,
+      "skills": {
+        "pronunciation": 7,
+        "fluency": 6,
+        "vocabulary": 7,
+        "grammar": 6
+      }
+    },
+
+    "pte": {
+      "label": "PTE",
+      "maxScore": 90,
+      "overall": 65,
+      "skills": {
+        "pronunciation": 66,
+        "fluency": 62,
+        "vocabulary": 68,
+        "grammar": 60
+      }
+    },
+
+    "toefl": {
+      "label": "TOEFL iBT",
+      "maxScore": 30,
+      "overall": 22,
+      "skills": {
+        "pronunciation": 23,
+        "fluency": 21,
+        "vocabulary": 22,
+        "grammar": 21
+      }
+    },
+
+    "toeic": {
+      "label": "TOEIC Speaking",
+      "maxScore": 200,
+      "overall": 160,
+      "skills": {
+        "pronunciation": 165,
+        "fluency": 155,
+        "vocabulary": 160,
+        "grammar": 150
+      }
+    }
+  }
+}
