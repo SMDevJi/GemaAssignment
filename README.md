@@ -1,16 +1,91 @@
-# React + Vite
+# 🧑‍💻 Student Speaking Assessment Report
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project is a frontend-focused functional prototype of a Student Speaking Assessment Report page, inspired by platforms like SpeechAce / IELTS score reports.
 
-Currently, two official plugins are available:
+It displays:
+- Overall speaking score
+- Skill-wise scores (Pronunciation, Fluency, Vocabulary, Grammar)
+- Visual representation using progress bars / charts
+- Dynamic descriptive feedback based on scores
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## React Compiler
+## 🚀 How to Run the Project
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### Prerequisites
+- Node.js
+- npm or pnpm
 
-## Expanding the ESLint configuration
+### Steps
+```bash
+npm install
+npm run dev
+```
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Open the app in your browser at:
+```
+http://localhost:5173
+```
+
+---
+
+## 📊 Where the Scores Are Stored
+
+All data is stored in a single JSON file:
+
+```
+src/reportData.json
+```
+
+This file contains:
+- Student details (name, date)
+- Scores for multiple frameworks:
+  - SpeechAce
+  - CEFR
+  - IELTS
+  - PTE
+  - TOEFL
+  - TOEIC
+- Skill-wise scores for each framework
+- Feedback rules for numeric and CEFR-based scoring
+
+The frontend reads directly from this file. No database or backend is used.
+
+---
+
+## 🧠 How Feedback Logic Works
+
+Feedback is rule-based and data-driven.
+
+### Numeric frameworks
+Scores are evaluated against ranges defined in `reportData.json`:
+- Score ≥ 8 → Excellent performance
+- Score 6–7 → Good performance
+- Score < 6 → Needs improvement
+
+The UI selects the first matching rule based on the score value.
+
+---
+
+### CEFR framework
+CEFR feedback is mapped directly to level labels:
+- A1 → Very limited
+- A2 → Basic
+- B1 → Adequate
+- B2 → Good
+- C1 → Advanced
+- C2 → Near-native
+
+Displayed value: CEFR level  
+Progress bars: Levels are internally mapped to percentages for visualization only.
+
+---
+
+## 🛠 Tech Stack
+- React (Vite)
+- JavaScript
+- Tailwind CSS
+- shadcn/ui (Dialog, Accordion)
+- JSON-based data source
+
+
