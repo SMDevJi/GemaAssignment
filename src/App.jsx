@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
@@ -17,10 +17,15 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion"
+import { useId } from 'react'
+import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
 
 import reportData from './reportData.json'
+import Guide from './components/Guide'
 
 function App() {
+  const id = useId()
+  const scrollContainerRef = useRef(null);
   const [selectedFm, setSelectedFm] = useState('speechace')
 
 
@@ -35,18 +40,59 @@ function App() {
   };
 
   const getPercent = (value) => {
-    if (selectedFm=='cefr') return percentMap[value];
+    if (selectedFm == 'cefr') return percentMap[value];
     return (value / reportData.frameworks[selectedFm].maxScore) * 100;
   };
 
 
+
+  const frameworks = [
+    { value: 'speechace', label: 'SpeechAce' },
+    { value: 'cefr', label: 'CEFR' },
+    { value: 'ielts', label: 'IELTS' },
+    { value: 'pte', label: 'PTE' },
+    { value: 'toefl', label: 'TOEFL iBT' },
+    { value: 'toeic', label: 'TOEIC Speaking' }
+  ]
+
+
+  const handleRadio = (value) => {
+    console.log(value)
+    setSelectedFm(value)
+  }
   return (
-    <div className='parent min-h-screen  w-screen  bg-neutral-900 text-green-300 font-semibold flex justify-center p-6'>
-      <div className="all max-w-6xl w-full h-full  p-2 my-6 flex flex-col items-center">
+    <div className='parent min-h-screen  max-w-screen  bg-neutral-900 text-green-300 font-semibold flex justify-center p-2 md:p-6  '>
+      <div className="all max-w-6xl w-full h-full  p-2 my-6 flex flex-col items-center ">
         <h1 className='text-2xl md:text-3xl'>Student Speaking Assessment Report</h1>
         <div className=' md:p-3 flex flex-col md:flex-row w-full md:w-2/3 justify-between my-6 text-lg '>
           <p>Student: <span className='font-normal'>{reportData.student.name}</span></p>
           <p>Date: <span className='font-normal'>{reportData.student.date}</span></p>
+        </div>
+
+        <h1 className='text-xl text-start w-full mb-2'>Choose Framework:</h1>
+        <div className="frameworks w-full rounded-sm text-lg bg-neutral-800 mb-4">
+          <RadioGroup
+            className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6  gap-2"
+            defaultValue="speechace"
+            onValueChange={handleRadio}
+          >
+            {frameworks.map((item) => (
+              <label
+                key={`${id}-${item.value}`}
+                className="cursor-pointer  has-data-[state=checked]:border-green-300/80 has-data-[state=checked]:bg-green-400 has-data-[state=checked]:text-green-800  relative flex justify-center rounded-md border-2 border-gray-700 px-2 py-3 text-center shadow-xs "
+              >
+                <RadioGroupItem
+                  id={`${id}-${item.value}`}
+                  value={item.value}
+                  className="sr-only after:absolute after:inset-0"
+                  aria-label={`size-radio-${item.value}`}
+                />
+                <p className=" text-sm leading-none font-medium">
+                  {item.label}
+                </p>
+              </label>
+            ))}
+          </RadioGroup>
         </div>
 
         <div className="summary w-full rounded-sm text-lg bg-neutral-800">
@@ -75,10 +121,15 @@ function App() {
                     <DialogTrigger>
                       <div className='bg-green-300 hover:bg-green-400 text-green-800 hover:text-green-900 p-2 rounded-sm cursor-pointer mt-3'>View Scoring Guide</div>
                     </DialogTrigger>
-                    <DialogContent>
-                      <DialogHeader>
-                        <DialogTitle>Are you absolutely sure?</DialogTitle>
+                    <DialogContent className='h-full  p-8 bg-neutral-800 text-green-300 '>
+                      <DialogHeader
+                       className='overflow-y-scroll scroll-smooth'
+                       ref={scrollContainerRef}
+                       >
+                        <DialogTitle className='text-2xl'>
+                          <span className='text-white font-bold'>{reportData.frameworks[selectedFm].label}</span> Scoring Guide</DialogTitle>
                         <DialogDescription>
+                          <Guide selectedFm={selectedFm} scrollContainerRef={scrollContainerRef} />
                           
                         </DialogDescription>
                       </DialogHeader>
