@@ -8,6 +8,19 @@ It displays:
 - Visual representation using progress bars / charts
 - Dynamic descriptive feedback based on scores
 
+
+---
+## 🚀 Deployed URL for Demo
+[https://gemaassignment.onrender.com](https://gemaassignment.onrender.com)
+
+---
+## 🚀 Demo Video
+<video src="https://github.com/user-attachments/assets/d42a5761-68a8-4ced-951e-eb556c6d1404" controls width="600"></video>
+
+
+
+
+
 ---
 
 ## 🚀 How to Run the Project
