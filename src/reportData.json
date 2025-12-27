@@ -4,28 +4,53 @@
     "date": "Dec 25, 2025"
   },
 
+  "feedbackRules": {
+    "numeric": [
+      {
+        "min": 8,
+        "text": "Excellent performance with strong control and minimal inaccuracies."
+      },
+      {
+        "min": 6,
+        "text": "Good performance with minor inaccuracies that do not affect understanding."
+      },
+      {
+        "min": 0,
+        "text": "Needs improvement. Inconsistencies may affect clarity and coherence."
+      }
+    ],
+    "cefr": {
+      "C2": "Near-native proficiency with precise and flexible language use.",
+      "C1": "Advanced control of language with occasional minor errors.",
+      "B2": "Good command of language with some inaccuracies.",
+      "B1": "Adequate communication ability but limited range and control.",
+      "A2": "Basic communication with frequent errors.",
+      "A1": "Very limited language use; requires significant improvement."
+    }
+  },
+
   "frameworks": {
     "speechace": {
       "label": "SpeechAce",
       "maxScore": 9,
-      "overall": 7,
+      "overall": 6,
       "skills": {
-        "pronunciation": 7,
-        "fluency": 6,
+        "pronunciation": 8,
+        "fluency": 5,
         "vocabulary": 7,
-        "grammar": 6
+        "grammar": 4
       }
     },
 
     "cefr": {
       "label": "CEFR",
       "levels": ["A1", "A2", "B1", "B2", "C1", "C2"],
-      "overall": "B2",
+      "overall": "B1",
       "skills": {
-        "pronunciation": "B2",
+        "pronunciation": "C1",
         "fluency": "B1",
         "vocabulary": "B2",
-        "grammar": "B1"
+        "grammar": "A2"
       }
     },
 
@@ -34,46 +59,46 @@
       "maxScore": 9,
       "overall": 7,
       "skills": {
-        "pronunciation": 7,
+        "pronunciation": 8,
         "fluency": 6,
         "vocabulary": 7,
-        "grammar": 6
+        "grammar": 5
       }
     },
 
     "pte": {
       "label": "PTE",
       "maxScore": 90,
-      "overall": 65,
+      "overall": 58,
       "skills": {
-        "pronunciation": 66,
-        "fluency": 62,
-        "vocabulary": 68,
-        "grammar": 60
+        "pronunciation": 72,
+        "fluency": 55,
+        "vocabulary": 61,
+        "grammar": 48
       }
     },
 
     "toefl": {
       "label": "TOEFL iBT",
       "maxScore": 30,
-      "overall": 22,
+      "overall": 20,
       "skills": {
-        "pronunciation": 23,
-        "fluency": 21,
+        "pronunciation": 26,
+        "fluency": 19,
         "vocabulary": 22,
-        "grammar": 21
+        "grammar": 17
       }
     },
 
     "toeic": {
       "label": "TOEIC Speaking",
       "maxScore": 200,
-      "overall": 160,
+      "overall": 145,
       "skills": {
-        "pronunciation": 165,
-        "fluency": 155,
-        "vocabulary": 160,
-        "grammar": 150
+        "pronunciation": 180,
+        "fluency": 140,
+        "vocabulary": 150,
+        "grammar": 120
       }
     }
   }

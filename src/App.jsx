@@ -39,6 +39,17 @@ function App() {
     C2: 100
   };
 
+  const getFeedbackText = (value) => {
+    if (selectedFm === "cefr") {
+      return reportData.feedbackRules.cefr[value] || "";
+    }
+
+    return reportData.feedbackRules.numeric.find(
+      rule => value >= rule.min
+    )?.text || "";
+  };
+
+
   const getPercent = (value) => {
     if (selectedFm == 'cefr') return percentMap[value];
     return (value / reportData.frameworks[selectedFm].maxScore) * 100;
@@ -123,14 +134,14 @@ function App() {
                     </DialogTrigger>
                     <DialogContent className='h-full  p-8 bg-neutral-800 text-green-300 '>
                       <DialogHeader
-                       className='overflow-y-scroll scroll-smooth'
-                       ref={scrollContainerRef}
-                       >
+                        className='overflow-y-scroll scroll-smooth'
+                        ref={scrollContainerRef}
+                      >
                         <DialogTitle className='text-2xl'>
                           <span className='text-white font-bold'>{reportData.frameworks[selectedFm].label}</span> Scoring Guide</DialogTitle>
                         <DialogDescription>
                           <Guide selectedFm={selectedFm} scrollContainerRef={scrollContainerRef} />
-                          
+
                         </DialogDescription>
                       </DialogHeader>
                     </DialogContent>
@@ -140,19 +151,27 @@ function App() {
               </div>
               <div className="right p-3 w-full">
                 <div className="pro mb-2">
-                  <h1><span className='font-normal'>Pronunciation: </span> {reportData.frameworks[selectedFm].skills.pronunciation}</h1>
+                  <h1>
+                    <span className='font-normal'>Pronunciation: </span> {reportData.frameworks[selectedFm].skills.pronunciation}
+                  </h1>
                   <Progress value={getPercent(reportData.frameworks[selectedFm].skills.pronunciation)} className='[&>div]:bg-green-300 mt-1 bg-neutral-700' />
                 </div>
                 <div className="flu mb-2">
-                  <h1><span className='font-normal'>Fluency: </span> {reportData.frameworks[selectedFm].skills.fluency}</h1>
+                  <h1>
+                    <span className='font-normal'>Fluency: </span> {reportData.frameworks[selectedFm].skills.fluency}
+                  </h1>
                   <Progress value={getPercent(reportData.frameworks[selectedFm].skills.fluency)} className='[&>div]:bg-green-300 mt-1 bg-neutral-700' />
                 </div>
                 <div className="voc mb-2">
-                  <h1><span className='font-normal'>Vocabulary: </span> {reportData.frameworks[selectedFm].skills.vocabulary}</h1>
+                  <h1>
+                    <span className='font-normal'>Vocabulary: </span> {reportData.frameworks[selectedFm].skills.vocabulary}
+                  </h1>
                   <Progress value={getPercent(reportData.frameworks[selectedFm].skills.vocabulary)} className='[&>div]:bg-green-300 mt-1 bg-neutral-700' />
                 </div>
                 <div className="gra mb-2">
-                  <h1><span className='font-normal'>Grammar: </span> {reportData.frameworks[selectedFm].skills.grammar}</h1>
+                  <h1>
+                    <span className='font-normal'>Grammar: </span> {reportData.frameworks[selectedFm].skills.grammar}
+                  </h1>
                   <Progress value={getPercent(reportData.frameworks[selectedFm].skills.grammar)} className='[&>div]:bg-green-300 mt-1 bg-neutral-700' />
                 </div>
               </div>
@@ -170,7 +189,7 @@ function App() {
                 <AccordionContent>
 
                   <h1 className='text-lg text-green-200'>
-                    Has reasonably good pronunciation with some accent. Demonstrates generally good fluency and coherence while speaking but may take occasional pauses. Is proficient in using sophisticated vocabulary and idiomatic structures. Proficient in expressing complex thoughts using a range of grammar structures.
+                    {getFeedbackText(reportData.frameworks[selectedFm].overall)}
                   </h1>
                 </AccordionContent>
               </AccordionItem>
@@ -179,7 +198,9 @@ function App() {
                 <AccordionTrigger className='text-lg [&>svg]:text-green-300  [&>svg]:h-6 [&>svg]:w-6 cursor-pointer'>Pronunciation ({reportData.frameworks[selectedFm].skills.pronunciation})</AccordionTrigger>
                 <AccordionContent>
                   <h1 className='text-lg text-green-200'>
-                    Uses a wide range of pronunciation features. Sustains flexible use of features, with only occasional lapses. Is easy to understand throughout; First language accent has minimal impact on intelligibility.
+                    {getFeedbackText(
+                      reportData.frameworks[selectedFm].skills.pronunciation
+                    )}
                   </h1>
                 </AccordionContent>
               </AccordionItem>
@@ -187,7 +208,9 @@ function App() {
                 <AccordionTrigger className='text-lg [&>svg]:text-green-300  [&>svg]:h-6 [&>svg]:w-6 cursor-pointer'>Fluency ({reportData.frameworks[selectedFm].skills.fluency})</AccordionTrigger>
                 <AccordionContent>
                   <h1 className='text-lg text-green-200'>
-                    Speaks fluently with only rare repetition or self-correction. Any hesitation in speech is content-related rather than from lack of vocabulary or proper grammar. Speaks coherently with appropriate cohesion between sentences. Develops topics fully and appropriately.
+                    {getFeedbackText(
+                      reportData.frameworks[selectedFm].skills.fluency
+                    )}
                   </h1>
                 </AccordionContent>
               </AccordionItem>
@@ -195,7 +218,9 @@ function App() {
                 <AccordionTrigger className='text-lg [&>svg]:text-green-300  [&>svg]:h-6 [&>svg]:w-6 cursor-pointer'>Vocabulary ({reportData.frameworks[selectedFm].skills.vocabulary})</AccordionTrigger>
                 <AccordionContent>
                   <h1 className='text-lg text-green-200'>
-                    Has a wide enough vocabulary to discuss topics at length and make meaning clear in spite of inappropriacies. Generally paraphrases successfully.
+                    {getFeedbackText(
+                      reportData.frameworks[selectedFm].skills.vocabulary
+                    )}
                   </h1>
                 </AccordionContent>
               </AccordionItem>
@@ -203,7 +228,9 @@ function App() {
                 <AccordionTrigger className='text-lg [&>svg]:text-green-300  [&>svg]:h-6 [&>svg]:w-6 cursor-pointer'>Grammar ({reportData.frameworks[selectedFm].skills.grammar})</AccordionTrigger>
                 <AccordionContent>
                   <h1 className='text-lg text-green-200'>
-                    Uses a mix of simple and complex structures, but with limited flexibility. May make frequent mistakes with complex structures though these rarely cause comprehension problems.
+                    {getFeedbackText(
+                      reportData.frameworks[selectedFm].skills.grammar
+                    )}
                   </h1>
                 </AccordionContent>
               </AccordionItem>
