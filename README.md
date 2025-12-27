@@ -1,4 +1,4 @@
-# 🧑‍💻 Student Speaking Assessment Report
+#  Student Speaking Assessment Report
 
 This project is a frontend-focused functional prototype of a Student Speaking Assessment Report page, inspired by platforms like SpeechAce / IELTS score reports.
 
@@ -10,11 +10,11 @@ It displays:
 
 
 ---
-## 🚀 Deployed URL for Demo
+##  Deployed URL for Demo
 [https://gemaassignment.onrender.com](https://gemaassignment.onrender.com)
 
 ---
-## 🚀 Demo Video
+##  Demo Video
 <video src="https://github.com/user-attachments/assets/d42a5761-68a8-4ced-951e-eb556c6d1404" controls width="600"></video>
 
 
@@ -23,7 +23,7 @@ It displays:
 
 ---
 
-## 🚀 How to Run the Project
+##  How to Run the Project
 
 ### Prerequisites
 - Node.js
@@ -31,6 +31,7 @@ It displays:
 
 ### Steps
 ```bash
+git clone https://github.com/SMDevJi/GemaAssignment.git
 npm install
 npm run dev
 ```
@@ -42,7 +43,7 @@ http://localhost:5173
 
 ---
 
-## 📊 Where the Scores Are Stored
+##  Where the Scores Are Stored
 
 All data is stored in a single JSON file:
 
@@ -66,7 +67,7 @@ The frontend reads directly from this file. No database or backend is used.
 
 ---
 
-## 🧠 How Feedback Logic Works
+##  How Feedback Logic Works
 
 Feedback is rule-based and data-driven.
 
@@ -94,7 +95,7 @@ Progress bars: Levels are internally mapped to percentages for visualization onl
 
 ---
 
-## 🛠 Tech Stack
+##  Tech Stack
 - React (Vite)
 - JavaScript
 - Tailwind CSS
